@@ -17,7 +17,7 @@
 
                     </div>
         <div class="col-sm-4">
-            <form class="mt-1 mt-md-5" action="log-in-response.php" method="POST">
+            <form class="mt-1 mt-md-5" action="log-in-response.php" method="GET">
                 <div class="mb-3">
                      <label for="email" class="form-label">email</label>
                      <input type="email" class="form-control"  id="email" name="email">
