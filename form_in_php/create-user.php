@@ -22,7 +22,7 @@
 
             </div>
             <div class="col-sm-4">
-                <form class="mt-1 mt-md-5" action="register-user.php" method="GET">
+                <form class="mt-1 mt-md-5" action="register-user.php" method="POST">
                     <div class="mb-2">
                         <label for="name" class="form-label">Nome</label>
                         <input type="name" class="form-control" id="name" name="first_name">
