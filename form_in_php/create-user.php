@@ -51,8 +51,8 @@
                         </div>
                     </div>
                     <div class="mb-2">
-                        <label for="username" class="form-label">Username</label>
-                        <input type="username" id="username" class="form-control" name="username">
+                        <label for="email" class="form-label">Username</label>
+                        <input type="email" id="email" class="form-control" name="email">
                     </div>
                     <div class="mb-2">
                         <label for="password" class="form-label">Password</label>
