@@ -1,14 +1,17 @@
 <?php
 
-$name = filter_input(INPUT_GET,'first_name');
-$lastName = filter_input(INPUT_GET,'last_name');
-$birthday = filter_input(INPUT_GET,'birthday');
-$birthPlace = filter_input(INPUT_GET,'birth_place');
-$gender = filter_input(INPUT_GET,'gender');
-$username = filter_input(INPUT_GET,'username');
-$password = filter_input(INPUT_GET,'password');
+$first_name = filter_input(INPUT_POST,'first_name');
 
+// whitespace char restituisce una striga   | campo obbligatorio
+// non compilo stringa "" | campo obbligatorio
+// se compilato restituisce una striga | success
+// null se non passo dal form | errore o campo obbligatorio
+// 
+var_dump($first_name);
 
-print_r('Nome: '.$name.' Cognome: '.$lastName.' Data: '.$birthday.' Luogo nascita '.$birthPlace.' Sesso: '.$gender.' Username: '.$username.' Password: '.$password);
 
 ?>
+
+
+<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veniam dignissimos ducimus at quaerat magnam praesentium sit quos blanditiis quas voluptate in delectus soluta, quibusdam quisquam tempore repellendus laborum iste vitae.</p>
+
