@@ -46,11 +46,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
 ?>
 
-
-
-
-
-
 <!doctype html>
 <html lang="en">
 
@@ -140,12 +135,12 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input <?php echo !$isValidGenderClass ?> 'is-invalid' :''" type="radio" name="gender" value="F" id="gender_F">
+              <input class="form-check-input <?php echo !$isValidateGender ?> 'is-invalid' :''" type="radio" name="gender" value="F" id="gender_F">
               <label class="form-check-label" for="gender_F">
                 Femminile
               </label>
               <?php
-            if (!$validatedGender) {  ?>
+            if (!$validateGender) {  ?>
               <div class="invalid-feedback">
                 il sesso è obbligatorio
 
