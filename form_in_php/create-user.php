@@ -2,6 +2,8 @@
 error_reporting(E_ALL);
 require "./class/validator/Validable.php";
 require "./class/validator/ValidateRequired.php";
+
+print_r($_POST);
 // //rappresenta l'ambiente dove gira lo script ed è una variabile super globale
 //print_r($_SERVER['REQUEST_METHOD']);
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
@@ -25,7 +27,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
   $isValidBirthClass = $validatorBirth->isValid($_POST['birth_place']) ? '' : 'is-invalid';
   $isValidUsernameClass = $validatorUsername->isValid($_POST['username']) ? '' : 'is-invalid';
   $isValidPasswordClass = $validatorPassword->isValid($_POST['password']) ? '' : 'is-invalid';
-  $validateGender = $validatorGender->isValid(!isset($_POST['gender']) ? '' : $_POST['gender']);
+  $validatedGender = $validatorGender->isValid(!isset($_POST['gender']) ? '' : $_POST['gender']);
   //$isValidGenderClass = $validateGender;
   }
 
@@ -73,7 +75,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
           <div class="mb-3">
             <label for="first_name" class="form-label">nome</label>
-            <input type="text" class="form-control <?php echo $isValidNameClass ?>" name="first_name" id="first_name">
+            <input type="text" value="<?php echo $_POST['first_name']?>" class="form-control <?php echo $isValidNameClass ?>" name="first_name" id="first_name">
             <?php
             if (!$validatedName) {  ?>
               <div class="invalid-feedback">
@@ -129,26 +131,24 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
           <div class="mb-3">
             <span>Genere</span>
             <div class="form-check">
-              <input class="form-check-input <?php echo !$validateGender ?> 'is-invalid' :''" type="radio" name="gender" value="M" id="gender_M">
+              <input class="form-check-input <?php !$validatedGender ? 'is-invalid': ''?>" type="radio" name="gender" value="M" id="gender_M">
               <label class="form-check-label" for="gender_M">
                 Maschile
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input <?php echo !$isValidateGender ?> 'is-invalid' :''" type="radio" name="gender" value="F" id="gender_F">
+              <input class="form-check-input <?php !$validatedGender ? 'is-invalid': ''?>" type="radio" name="gender" value="F" id="gender_F">
               <label class="form-check-label" for="gender_F">
                 Femminile
               </label>
               <?php
-            if (!$validateGender) {  ?>
+            if (!$validatedGender):  ?>
               <div class="invalid-feedback">
                 il sesso è obbligatorio
 
               </div>
 
-            <?php
-            }
-            ?>
+            <?php endif ?>
 
             </div>
           </div>
