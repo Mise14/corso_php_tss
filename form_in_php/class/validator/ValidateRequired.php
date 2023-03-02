@@ -1,20 +1,16 @@
 <?php
+/**
+ * -Preservare il valore iniziale valido del campo di testo
+ * -Visualizzare il messaggio di errore per il singolo campo
+ *  - sapere se c'è un errore **is valid()**
+ *  - ripulire e controllare i valori (sicurezza)
+ *  - ogni validazione ha il suo messaggio di errore
+ *  - impostare la classe di bootstrap is-invalid
+ */
 
-class ValidateRequired
+class ValidateRequired implements Validable
 {
-    /*
-    public function isEmpty($data)
-    {
-        /*empty da 0 (true) se è vuota, 1 (false) se non è vuota 
-        foreach ($data as $i => $elementi) {
-            if (empty($elementi)) {
-                echo "Test NON superato per :[$i] perchè vuoto <br> ";
-            } else {
-                echo " Test superato per :[$i] perche' pieno <br> ";
-            }
-        }
-    }
-    */
+
 
     public function isValid($value)
     {
@@ -26,4 +22,6 @@ class ValidateRequired
         }
         return $valueWithoutSpace;
     }
+
+
 }
