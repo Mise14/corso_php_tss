@@ -4,31 +4,15 @@ require "./class/validator/Validable.php";
 require "./class/validator/ValidateRequired.php";
 
 print_r($_POST);
+
+$validatorName = new ValidateRequired('','Il nome è obbligatorio');
+
 // //rappresenta l'ambiente dove gira lo script ed è una variabile super globale
-//print_r($_SERVER['REQUEST_METHOD']);
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
   echo "dati inviati, adesso li devo controllare";
 
-  $validatorName = new ValidateRequired();
   $validatedName = $validatorName->isValid($_POST['first_name']);
-  $validatorSurname = new ValidateRequired();
-  $validatedSurname = $validatorSurname->isValid($_POST['last_name']);
-  $validatorBirth = new ValidateRequired();
-  $validatedBirth = $validatorBirth->isValid($_POST['birth_place']);
-  $validatorUsername = new ValidateRequired();
-  $validatedUsername = $validatorUsername->isValid($_POST['username']);
-  $validatorPassword = new ValidateRequired();
-  $validatedPassword = $validatorPassword->isValid($_POST['password']);
-  $validatorGender = new ValidateRequired();
- // $validatedGender = $validatorGender->isValid($_POST['gender']);
-  //ciclo if scritto diversamente:
-  $isValidNameClass = $validatorName->isValid($_POST['first_name']) ? '' : 'is-invalid';
-  $isValidLastNameClass = $validatorSurname->isValid($_POST['last_name']) ? '' : 'is-invalid';
-  $isValidBirthClass = $validatorBirth->isValid($_POST['birth_place']) ? '' : 'is-invalid';
-  $isValidUsernameClass = $validatorUsername->isValid($_POST['username']) ? '' : 'is-invalid';
-  $isValidPasswordClass = $validatorPassword->isValid($_POST['password']) ? '' : 'is-invalid';
-  $validatedGender = $validatorGender->isValid(!isset($_POST['gender']) ? '' : $_POST['gender']);
-  //$isValidGenderClass = $validateGender;
+ 
   }
 
   if($_SERVER['REQUEST_METHOD'] === 'GET'){
@@ -36,14 +20,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     //dato che entriamo via GET
      $validatedName = false;
      $isValidNameClass = ' ';
-     $validatedSurname = false;
-     $isValidLastNameClass = ' ';
-     $validatedBirth = false;
-     $isValidBirthClass = ' ';
-     $validatedUsername = false;
-     $isValidUsernameClass = ' ';
-     $validatedPassword = false;
-     $isValidPasswordClass = ' ';
   }
 
 ?>
@@ -75,12 +51,15 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
           <div class="mb-3">
             <label for="first_name" class="form-label">nome</label>
-            <input type="text" value="<?php echo $_POST['first_name']?>" class="form-control <?php echo $isValidNameClass ?>" name="first_name" id="first_name">
+            <input type="text" 
+            value="<?php echo $validatorName->getValue() ?>" 
+            class="form-control <?php echo !$ValidatorName->getValid() ? '':'' ?>" 
+            name="first_name" 
+            id="first_name">
             <?php
-            if (!$validatedName) {  ?>
+            if ($validatorName->getValid()) {  ?>
               <div class="invalid-feedback">
-                il nome è obbligatorio
-
+               <?php echo $validatorName->getMessage() ?>
               </div>
 
             <?php
