@@ -1,58 +1,58 @@
 <?php
 /**
- * - [x] Preservare il valore iniziale valido del campo di testo
- * -Visualizzare il messaggio di errore per il singolo campo
- *  - [x]sapere se c'è un errore **is valid()**
- *  - [x]ripulire e controllare i valori (sicurezza)
- *  - ogni validazione ha il suo messaggio di errore
- *  - impostare la classe di bootstrap is-invalid
+ * - [x] Preservare il valore iniziale valido (e ripulito) del campo di testo
+ * - visualizzare il messaggio di errore per il singolo campo
+ *    - [x] sapere se cè un errore **is valid()**
+ *    - [x] ripulire e controllare i valori (sicurezza)
+ *    - ogni validazione ha il suo messaggio di errore 
+ *    - impostare la classe di bootstrap is-invalid
+ *    
  */
 
-class ValidateRequired implements Validable
-{
-    /** @var string rappresenta il valore immesso nel form ripulito */
-    private $value;
-    private $message;
-    private $hasMessage;
-    /** se il valore è valido e se devo visualizzare il messaggio */
-    private $valid;
+class ValidateRequired implements Validable {
 
-    //Assegno una stringa vuota al form in GET
-    public function __construct($default_velue='',$message='è obbligatorio') {
-        $this->value = $default_velue;
-        $this->valid = true;
-        $this->message = $message;
+ /** @var string rappresenta il valore immesso nel form ripulito */
+ private $value;
+ private $message ;
+ private $hasMessage;
+ /** se il valore è valido e se devo visualizzare il messaggio  */
+ private $valid;
+ 
+ public function __construct($default_velue='',$message='è obbligatorio') {
+   $this->value = $default_velue;
+   $this->valid = true;
+   $this->message = $message;
+ }
+
+ public function isValid($value) // ?
+ {
+
+    $strip_tag = strip_tags($value);
+    $valueWidoutSpace = trim($strip_tag);
+    if($valueWidoutSpace == ''){
+       $this->valid = false;
+       return false;
     }
+    $this->valid = true;
+    $this->value = $valueWidoutSpace;
+    return $valueWidoutSpace;    
+    
+ }
 
-    public function isValid($value)
-    {
-        $strip_tag = strip_tags($value);
-        $valueWithoutSpace = trim($strip_tag);
+ public function getValue()
+ {
+   return $this->value;
+ }
 
-        //se inserisco una stringa con soli spazi, e con trim mi ritorna una stringa vuota -> ritorna false
-        if($valueWithoutSpace == ''){
-            $this->valid = false;
-            return false;
-        }
-        $this->valid=true;
-        $this->value = $valueWithoutSpace;
-        return $valueWithoutSpace;
-    }
+ public function getMessage()
+ {
+   return $this->message;
+ }
 
-    public function getValue()
-    {
-        return $this->value;
-    }
+ public function getValid()
+ {
+   return $this->valid;
+ }
 
-    public function getMessage()
-    {
-        return $this->message;
-    }
-
-    public function getValid()
-    {
-        return $this->valid;
-    }
-
-
+ 
 }
