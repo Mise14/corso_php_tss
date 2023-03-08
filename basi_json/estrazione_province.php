@@ -9,13 +9,13 @@ $dsn = "mysql:host=".DB_HOST.";dbname=".DB_NAME;
 
 try {
     $conn = new PDO($dsn,DB_USER,DB_PASSWORD);
-   // $conn->query('TRUNCATE TABLE provincia');
+    $conn->query('TRUNCATE TABLE provincia');
     foreach($province_object as $provincia) {
         $regione = $provincia->regione;
         $nome_provincia = addslashes($provincia->nome);
-        $sigla_provincia = addslashes($provincia->sigla);
+        $sigla = addslashes($provincia->sigla);
         $regione = $conn->query("SELECT regione_id FROM regione WHERE nome =\"$regione\"")->fetchColumn();
-        $sql = "INSERT INTO provincia (nome,sigla,regione_id) VALUES('$nome_provincia','$sigla_provincia','$regione');";
+        $sql = "INSERT INTO provincia (nome,sigla,regione_id) VALUES('$nome_provincia','$sigla','$regione');";
         echo $sql ."\n";
         $conn->query($sql);
     }
