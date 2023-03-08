@@ -1,20 +1,20 @@
 -- Active: 1678176946563@@127.0.0.1@3306@form_in_php
-CREATE TABLE Regione (
+CREATE TABLE regione (
     regione_id int NOT NULL AUTO_INCREMENT,
-    Nome varchar(255),
+    nome varchar(255),
     PRIMARY KEY (regione_id)
 );
 
-CREATE TABLE Provincia (
+CREATE TABLE provincia (
     provincia_id int NOT NULL AUTO_INCREMENT,
-    Nome varchar(255),
-    Sigla char(2),
+    nome varchar(255),
+    sigla char(2),
     regione_id int,
     PRIMARY KEY (provincia_id),
-    Foreign Key (regione_id) REFERENCES Regione(regione_id)
+    Foreign Key (regione_id) REFERENCES regione(regione_id)
 );
 
-INSERT INTO regione (Nome) VALUES('Abruzzo');
+INSERT INTO regione (nome) VALUES('Abruzzo');
 
 TRUNCATE regione;
 
