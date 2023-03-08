@@ -10,6 +10,7 @@ $regioni_array = array_map(function($provincia){
 },$province_object);
 //tolgo i duplicati dall'array
 $regioni_unique = array_unique($regioni_array);
+//ordino le regioni in ordine alfabetico
 sort($regioni_unique);
 
 //richiamo le variabili globali nel file config.php per connettermi al DB
