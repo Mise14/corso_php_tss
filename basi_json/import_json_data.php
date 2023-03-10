@@ -12,8 +12,6 @@ $province=file_get_contents('province.json');
 
 // echo $province;
 
-
-
 $province_object = json_decode($province);
 
 // print_r($province_object[4]->nome);
