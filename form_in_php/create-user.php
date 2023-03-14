@@ -1,9 +1,12 @@
 <?php
-require "./class/validator/Validable.php";
-require "./class/validator/ValidateRequired.php";
+
+use Registry\it\Provincia;
+use Registry\it\Regione;
+use validator\ValidateRequired;
+
 require "../config.php";
-require "./class/validator/Registry/it/Regione.php";
-require "./class/validator/Registry/it/Provincia.php";
+require "./autoload.php";
+
 //error_reporting(E_ALL); li vede tutti
 //error_reporting(0); li spegne tutti
 //che a sua volta richiede l' interfaccia
